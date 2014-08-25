@@ -9,3 +9,5 @@ composer.lock
 Thumbs.db
 .idea
 
+
+tests/_output/*
