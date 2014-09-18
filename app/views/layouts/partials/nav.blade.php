@@ -32,7 +32,10 @@
                       </li>
                     @else
                         <li>
-                            {{ link_to_route('login_path', 'Log In', null) }}
+                            {{ link_to_route('login_path', 'Log In') }}
+                        </li>
+                        <li>
+                            {{ link_to_route('register_path', 'Register') }}
                         </li>
                     @endif
                 </ul>
