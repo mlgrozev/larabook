@@ -4,9 +4,9 @@ use Larabook\Users\User;
 
 class StatusRepository {
 
-	public function getAllForUser(User $user)
+	public function getAllForUser($userId)
 	{
-		return $user->statuses;	
+		return User::findOrFail($userId)->statuses;	
 	}
 	
 	/**
