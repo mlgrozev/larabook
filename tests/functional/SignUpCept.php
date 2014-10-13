@@ -16,8 +16,8 @@ $I->click('Sign Up');
 $I->seeCurrentUrlEquals('');
 $I->see('Welcome to Larabook!');
 $I->seeRecord('users', [
-	'username' => 'JohnDoe',
-	'email' => 'john@example.com'
+	'username' => 'JohnDoe2',
+	'email' => 'john2@example.com'
 ]);
 
 $I->assertTrue(Auth::check());

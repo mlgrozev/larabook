@@ -9,6 +9,11 @@ class StatusRepositoryTest extends \Codeception\TestCase\Test {
 	 * @var \IntegrationTester
 	 */
 	protected $tester;
+	
+	/**
+	 * @var Status Repository
+	 */
+	protected $repo;
 
 	protected function _before()
 	{
