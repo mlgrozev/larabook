@@ -20,6 +20,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * Which fields can be mass assigned
+	 *
 	 * @var array
 	 */
 	protected $fillable = ['username', 'email', 'password'];
@@ -32,7 +33,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * Path to the presenter to the user
-	 * 
+	 *
 	 * @var string
 	 */
 	protected $presenter = 'Larabook\Users\UserPresenter';
@@ -46,7 +47,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * Password must always be hashed
-	 * 
+	 *
 	 * @param $password
 	 */
 	public function setPasswordAttribute($password)
@@ -56,7 +57,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * A user has many statuses
-	 * 
+	 *
 	 * @return mixed
 	 */
 	public function statuses()
@@ -66,31 +67,57 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * Register new user
-	 * 
+	 *
 	 * @param $username
 	 * @param $email
 	 * @param $password
 	 *
 	 * @return static
-	 */public static function register($username, $email, $password)
+	 */
+	public static function register($username, $email, $password)
 	{
 		$user = new static(compact('username', 'email', 'password'));
-		
+
 		$user->raise(new UserRegistered($user));
-		
+
 		return $user;
 		//raise and event
 	}
 
 	/**
 	 * Determine is current user the same as the given one.
-	 * @param User $user
+	 *
+	 * @param $user
 	 *
 	 * @return bool
 	 */
-	public function is(User $user)
+	public function is($user)
 	{
-		return $this->username == $user->username;	
+		if (is_null($user)) return false;
+
+		return $this->username == $user->username;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function follows()
+	{
+		return $this->belongsToMany(self::class, 'follows', 'follower_id', 'followed_id')->withTimestamps();
+	}
+
+	/**
+	 * Determine if current user follows another user
+	 * 
+	 * @param User $otherUser
+	 *
+	 * @return bool
+	 */
+	public function isFollowedBy(User $otherUser)
+	{
+		$idsWhoOtherUserFollows = $otherUser->follows()->lists('followed_id');
+
+		return in_array($this->id, $idsWhoOtherUserFollows);
 	}
 
 }

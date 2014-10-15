@@ -41,12 +41,12 @@ Route::get('logout', [
  */
 Route::get('statuses', [
 	'as'   => 'statuses_path',
-	'uses' => 'StatusController@index'
+	'uses' => 'StatusesController@index'
 ]);
 
 Route::post('statuses', [
 	'as'   => 'statuses_path',
-	'uses' => 'StatusController@store'
+	'uses' => 'StatusesController@store'
 ]);
 
 /**
@@ -60,4 +60,19 @@ Route::get('users', [
 Route::get('@{username}', [
 	'as'   => 'profile_path',
 	'uses' => 'UsersController@show'
-]); 
+]);
+
+
+/**
+ * Follows
+ */
+Route::post('follows', [
+	'as'   => 'follows_path',
+	'uses' => 'FollowsController@store'
+]);
+
+Route::delete('follows/@{id}', [
+	'as'   => 'follow_path',
+	'uses' => 'FollowsController@destroy'
+]);
+
