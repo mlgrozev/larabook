@@ -41,5 +41,37 @@ class UserRepositoryTest extends \Codeception\TestCase\Test {
 		$this->assertEquals($username, $user->username);
 		$this->assertCount(3, $user->statuses);
 	}
+	
+	/** @test */
+	public function it_follows_another_user()
+	{
+		//given I have two users
+		list($john, $susan) = TestDummy::times(2)->create('Larabook\Users\User');
+		
+		//and one user follows another user
+		$this->repo->follow($john->id, $susan);
 
+		$this->tester->seeRecord('follows', [
+			'follower_id' => $susan->id,
+			'followed_id' => $john->id,
+		]);
+	}
+
+	/** @test */
+	public function it_unfollows_another_user()
+	{
+		//given I have two users
+		list($john, $susan) = TestDummy::times(2)->create('Larabook\Users\User');
+
+		//and one user follows another user
+		$this->repo->follow($john->id, $susan);
+		
+		$this->repo->unfollow($john->id, $susan);
+
+		$this->tester->dontSeeRecord('follows', [
+			'follower_id' => $susan->id,
+			'followed_id' => $john->id,
+		]);
+	}
+	
 }
