@@ -49,6 +49,11 @@ Route::post('statuses', [
 	'uses' => 'StatusesController@store'
 ]);
 
+Route::post('statuses/{id}/comments', [
+	'as' => 'comment_path',
+	'uses' => 'CommentsController@store'
+]);
+
 /**
  * Users
  */
@@ -76,3 +81,7 @@ Route::delete('follows/@{id}', [
 	'uses' => 'FollowsController@destroy'
 ]);
 
+/**
+ * Passwords Resets
+ */
+Route::controller('password', 'RemindersController');

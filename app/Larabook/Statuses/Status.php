@@ -44,4 +44,12 @@ class Status extends \Eloquent {
 
 		return $status;
 	}
+
+	/**
+	 * @return mixed
+	 */
+	public function comments()
+	{
+		return $this->hasMany('Larabook\Statuses\Comment');
+	}
 }

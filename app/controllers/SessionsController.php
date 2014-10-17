@@ -52,7 +52,7 @@ class SessionsController extends \BaseController {
 		{
 			Flash::message('We were unable to sign you in. Please check your credentials and try again!');
 
-			return Reddirect::back()->withInput();
+			return Redirect::back()->withInput();
 		}
 		
 		Flash::message('Welcome back!');

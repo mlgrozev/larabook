@@ -1,0 +1,44 @@
+// Each individual status
+.status-media {
+  border: 1px solid #E3E3E3;
+  border-bottom: none;
+  background: white;
+  padding: 1em;
+}
+
+.status-media-heading {
+  color: rgb(64, 157, 209);
+  position: relative;
+  top: 5px;
+}
+
+.status-media-body {
+  color: #B3BAC0;
+  font-size: 1.2em;
+  padding: .5em 1em 1em 1em;
+}
+
+.status-media-object {
+  position: relative;
+  top: 13px;
+  left: 10px;
+  border: 1px solid rgb(238, 238, 238);
+}
+
+.comments__create-form textarea {
+  border: 1px solid #E3E3E3;
+  border-top: none;
+  border-radius: 0;
+}
+
+.comments {
+  margin-bottom: 5em;
+}
+
+.comments__comment {
+  background: darken(white, 10%);
+  margin-top: 0;
+  border: 1px solid darken(white, 15%);
+  border-bottom: 1px solid #E3E3E3;
+  
+}

@@ -30,10 +30,10 @@
                       </li>
                     @else
                         <li>
-                            {{ link_to_route('login_path', 'Log In') }}
+                            {{ link_to_route('register_path', 'Register') }}
                         </li>
                         <li>
-                            {{ link_to_route('register_path', 'Register') }}
+                            {{ link_to_route('login_path', 'Log In') }}
                         </li>
                     @endif
                 </ul>
