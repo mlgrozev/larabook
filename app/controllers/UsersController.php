@@ -35,5 +35,5 @@ class UsersController extends \BaseController {
 
 		return View::make('users.show')->withUser($user);
 	}
-	
+
 }

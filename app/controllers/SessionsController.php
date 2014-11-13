@@ -54,7 +54,7 @@ class SessionsController extends \BaseController {
 
 			return Redirect::back()->withInput();
 		}
-		
+
 		Flash::message('Welcome back!');
 
 		return Redirect::intended('/statuses');
