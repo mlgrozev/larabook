@@ -8,7 +8,7 @@ use Laracasts\Commander\CommanderTrait;
  * Class RegistrationController
  */
 class RegistrationController extends \BaseController {
-	
+
 	/**
 	 * @var RegistrationForm
 	 */
@@ -38,12 +38,13 @@ class RegistrationController extends \BaseController {
 
 	/**
 	 * Create a new Larabook user
+	 *
 	 * @return string
 	 */
 	public function store()
 	{
 		$this->registrationForm->validate(Input::all());
-		
+
 //		extract(Input::only('username', 'email', 'password'));
 //
 //		$user = $this->execute(
@@ -55,10 +56,9 @@ class RegistrationController extends \BaseController {
 		Auth::login($user);
 
 		Flash::overlay('Glad to have you as a new Larabook member!');
-		
+
 		return Redirect::home();
 	}
-
 
 
 }

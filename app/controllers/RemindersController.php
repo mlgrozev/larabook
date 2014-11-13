@@ -28,7 +28,7 @@ class RemindersController extends BaseController {
 
 			case Password::REMINDER_SENT:
 				Flash::message(Lang::get($response));
-				
+
 				return Redirect::back();
 		}
 	}
@@ -36,10 +36,11 @@ class RemindersController extends BaseController {
 	/**
 	 * Display the password reset view for the given token.
 	 *
-	 * @param  string  $token
+	 * @param  string $token
+	 *
 	 * @return Response
 	 */
-	public function getReset($token = null)
+	public function getReset($token = NULL)
 	{
 		if (is_null($token)) App::abort(404);
 
@@ -57,7 +58,7 @@ class RemindersController extends BaseController {
 			'email', 'password', 'password_confirmation', 'token'
 		);
 
-		$response = Password::reset($credentials, function($user, $password)
+		$response = Password::reset($credentials, function ($user, $password)
 		{
 			$user->password = $password;
 
@@ -70,12 +71,12 @@ class RemindersController extends BaseController {
 			case Password::INVALID_TOKEN:
 			case Password::INVALID_USER:
 				Flash::error(Lang::get($response));
-				
+
 				return Redirect::back();
 
 			case Password::PASSWORD_RESET:
 				Flash::success('Your password has been reset. You may now login.');
-				
+
 				return Redirect::to('/');
 		}
 	}
